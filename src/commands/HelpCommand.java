@@ -1,7 +1,7 @@
 package commands;
 import essential.Game;
 
-public class HelpCommand {
+public class HelpCommand implements Command{
     private Game game;
 
     public HelpCommand(Game game){
