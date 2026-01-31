@@ -1,0 +1,123 @@
+{
+  "locations": [
+    {
+      "id": "plaz",
+      "name": "Pláž",
+      "description": "Krásná písečná pláž s výhledem na modré moře. Před tebou se tyčí\nvysoká hora obklopená hustou džunglí.",
+      "connections": {
+        "okraj": "okraj",
+        "more": "more"
+      },
+      "items": ["kokos"],
+      "characters": ["trosecnik"],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "okraj",
+      "name": "Okraj džungle",
+      "description": "Okraj džungle je plný zvuků exotických ptáků. Cesta je hustě\nporostlá vegetací.",
+      "connections": {
+        "plaz": "plaz",
+        "dzungle": "dzungle",
+        "chram": "chram",
+        "tabor": "tabor"
+      },
+      "items": [],
+      "characters": [],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": true,
+      "requiredItemId": "kokos"
+    },
+    {
+      "id": "dzungle",
+      "name": "Hluboká džungle",
+      "description": "Hluboká džungle je temná a vlhká. Cítíš přítomnost něčeho\nobrovského.",
+      "connections": {
+        "okraj": "okraj",
+        "jeskyne": "jeskyne",
+        "zakladna": "zakladna"
+      },
+      "items": [],
+      "characters": ["khar"],
+      "requiresQuest": true,
+      "requiredQuestId": "marinak_poklad",
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "jeskyne",
+      "name": "Jeskyně",
+      "description": "Temná jeskyně je plná pavučin. V hloubce něco svítí...",
+      "connections": {
+        "dzungle": "dzungle"
+      },
+      "items": ["diamant"],
+      "characters": ["pavouk"],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": true,
+      "requiredItemId": "plamenomet"
+    },
+    {
+      "id": "tabor",
+      "name": "Tábor spojenců",
+      "description": "Vojenský tábor s pár stany. Vypadá poloprázdný.",
+      "connections": {
+        "okraj": "okraj"
+      },
+      "items": [],
+      "characters": ["marinak"],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "more",
+      "name": "Moře",
+      "description": "V moři se vznáší několik těl mrtvých vojáků. Jeden má u sebe papír.",
+      "connections": {
+        "plaz": "plaz"
+      },
+      "items": ["kod"],
+      "characters": [],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "chram",
+      "name": "Chrám",
+      "description": "Prastarý chrám pokrytý mechem. Vidíš výstražné symboly na stěnách.",
+      "connections": {
+        "okraj": "okraj"
+      },
+      "items": ["poklad"],
+      "characters": [],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "zakladna",
+      "name": "Základna Pána Ostrova",
+      "description": "Základna pána ostrova. Moderní budova s heliportem na střeše.",
+      "connections": {
+        "dzungle": "dzungle"
+      },
+      "items": [],
+      "characters": [],
+      "requiresQuest": true,
+      "requiredQuestId": "khar_diamant",
+      "requiresItem": false,
+      "requiredItemId": null
+    }
+  ],
+  "startLocation": "plaz"
+}
