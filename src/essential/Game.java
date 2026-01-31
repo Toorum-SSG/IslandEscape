@@ -19,6 +19,10 @@ public class Game {
         this.commandParser = new CommandParser(this);
     }
 
+    public void setRunning(boolean running){
+        this.running = running;
+    }
+
     public void start() throws IOException {
         try {
             initializeGame();

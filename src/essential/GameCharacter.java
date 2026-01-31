@@ -1,5 +1,4 @@
 package essential;
-
 import java.util.*;
 
 public class GameCharacter {
