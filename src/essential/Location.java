@@ -21,20 +21,12 @@ import java.util.*;
         this.connections = new HashMap<>();
     }
 
-    public String getId(){
-        return id;
-    }
-
     public void setId(String id){
         this.id = id;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public void addItem(Item item) {
@@ -84,11 +76,6 @@ import java.util.*;
     public void setRequiresQuest(String questId) {
         this.requiresQuest = true;
         this.requiredQuestId = questId;
-    }
-
-    public void setRequiresItem(String itemId) {
-        this.requiresItem = true;
-        this.requiredItemId = itemId;
     }
 
     public boolean isAccessible(Player player) {

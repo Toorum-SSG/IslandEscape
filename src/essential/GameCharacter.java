@@ -17,10 +17,6 @@ public class GameCharacter {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public boolean isHostile() {
         return hostile;
     }

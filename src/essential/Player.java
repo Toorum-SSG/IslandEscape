@@ -21,10 +21,6 @@ public class Player {
         this.completedQuests = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Inventory getInventory() {
         return inventory;
     }

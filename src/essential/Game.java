@@ -11,12 +11,14 @@ public class Game {
     private boolean running;
     private String worldFilePath;
     private CommandParser commandParser;
+    private WorldLoader worldLoader;
 
     public Game(String worldFilePath) {
         this.worldFilePath = worldFilePath;
         this.scanner = new Scanner(System.in);
         this.running = true;
         this.commandParser = new CommandParser(this);
+        this.worldLoader = new WorldLoader();
     }
 
     public void setRunning(boolean running){
@@ -31,7 +33,7 @@ public class Game {
             player.getCurrentLocation().examine();
 
             while (running && !player.hasGameEnded()){
-                System.out.println("\n>>");
+                System.out.print("\n>>");
                 String input = scanner.nextLine().trim();
 
                 if (!input.isEmpty()) {
@@ -42,7 +44,7 @@ public class Game {
             if (player.hasGameEnded()){
                 if (player.hasWon()){
                     System.out.println("\n" + "=".repeat(50));
-                    System.out.println("Gratujuli! Unikl/a jsi!");
+                    System.out.println("Gratuluji! Hra je vyhrána!");
                     System.out.println("=".repeat(50));
                 } else {
                     System.out.println("\n" + "=".repeat(50));
@@ -71,12 +73,9 @@ public class Game {
         System.out.println("Napiš 'pomoc' pro zobrazení dostupných příkazů.\n");
     }
 
-    public void initializeGame(){
-        System.out.println("Načítám svět ze souboru: " + worldFilePath);
-        locations = WorldLoader.loadWorld(worldFilePath);
-        String startLocationID = WorldLoader.getStartLocation(worldFilePath);
-
-        System.out.println("Načteno " + locations.size() + " lokací");
+    public void initializeGame() throws IOException {
+        locations = worldLoader.loadWorld(worldFilePath);
+        String startLocationId = worldLoader.getStartLocation(worldFilePath);
 
         Item kokos = new Item("kokos", "Čerstvý kokos", 2);
         Item kod = new Item("kod", "Kód: 4782", 1);

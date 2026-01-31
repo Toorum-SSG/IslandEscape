@@ -15,10 +15,6 @@ public class Item {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public int getSize() {
         return size;
     }

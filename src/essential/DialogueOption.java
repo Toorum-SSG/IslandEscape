@@ -37,16 +37,7 @@ public class DialogueOption {
         return itemToGive;
     }
 
-    public void setEndsGame(boolean endsGame, boolean isVictory){
-        this.endsGame = endsGame;
-        this.isVictory = isVictory;
-    }
-
     public void setQuestToGive(Quest quest){
         this.questToGive = quest;
-    }
-
-    public void setItemToGive(Item item){
-        this.itemToGive = item;
     }
 }

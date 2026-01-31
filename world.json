@@ -3,7 +3,7 @@
     {
       "id": "plaz",
       "name": "Pláž",
-      "description": "Krásná písečná pláž s výhledem na modré moře. Před tebou se tyčí\nvysoká hora obklopená hustou džunglí.",
+      "description": "Krásná písečná pláž s výhledem na modré moře. Před tebou se tyčí vysoká hora obklopená hustou džunglí.",
       "connections": {
         "okraj": "okraj",
         "more": "more"
@@ -18,7 +18,7 @@
     {
       "id": "okraj",
       "name": "Okraj džungle",
-      "description": "Okraj džungle je plný zvuků exotických ptáků. Cesta je hustě\nporostlá vegetací.",
+      "description": "Okraj džungle je plný zvuků exotických ptáků. Cesta je hustě porostlá vegetací.",
       "connections": {
         "plaz": "plaz",
         "dzungle": "dzungle",
@@ -35,7 +35,7 @@
     {
       "id": "dzungle",
       "name": "Hluboká džungle",
-      "description": "Hluboká džungle je temná a vlhká. Cítíš přítomnost něčeho\nobrovského.",
+      "description": "Hluboká džungle je temná a vlhká. Cítíš přítomnost něčeho obrovského.",
       "connections": {
         "okraj": "okraj",
         "jeskyne": "jeskyne",

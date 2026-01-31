@@ -21,14 +21,6 @@ public class Quest {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
     public void complete() {
         this.completed = true;
     }
