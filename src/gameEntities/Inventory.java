@@ -1,4 +1,4 @@
-package essential;
+package gameEntities;
 import java.util.*;
 
  public class Inventory {

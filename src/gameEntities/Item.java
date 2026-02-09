@@ -1,4 +1,4 @@
-package essential;
+package gameEntities;
 
 public class Item {
     private String name;
@@ -18,4 +18,6 @@ public class Item {
     public int getSize() {
         return size;
     }
+
+    public String getDescription() { return description; }
 }

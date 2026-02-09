@@ -1,0 +1,389 @@
+{
+  "locations": [
+    {
+      "id": "plaz",
+      "name": "Pláž",
+      "description": "Krásná písečná pláž s výhledem na modré moře. Před tebou se tyčí vysoká hora obklopená hustou džunglí.",
+      "connections": {
+        "okraj": "okraj",
+        "more": "more"
+      },
+      "items": ["kokos"],
+      "characters": ["trosecnik"],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "okraj",
+      "name": "Okraj džungle",
+      "description": "Okraj džungle je plný zvuků exotických ptáků. Cesta je hustě porostlá vegetací.",
+      "connections": {
+        "plaz": "plaz",
+        "dzungle": "dzungle",
+        "chram": "chram",
+        "tabor": "tabor"
+      },
+      "items": [],
+      "characters": [],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": true,
+      "requiredItemId": "kokos"
+    },
+    {
+      "id": "dzungle",
+      "name": "Hluboká džungle",
+      "description": "Hluboká džungle je temná a vlhká. Cítíš přítomnost něčeho obrovského.",
+      "connections": {
+        "okraj": "okraj",
+        "jeskyne": "jeskyne",
+        "zakladna": "zakladna"
+      },
+      "items": [],
+      "characters": ["khar"],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "jeskyne",
+      "name": "Jeskyně",
+      "description": "Temná jeskyně je plná pavučin. V hloubce něco svítí...",
+      "connections": {
+        "dzungle": "dzungle"
+      },
+      "items": ["diamant"],
+      "characters": ["pavouk"],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": true,
+      "requiredItemId": "plamenomet"
+    },
+    {
+      "id": "tabor",
+      "name": "Tábor spojenců",
+      "description": "Vojenský tábor s pár stany. Vypadá poloprázdný.",
+      "connections": {
+        "okraj": "okraj"
+      },
+      "items": [],
+      "characters": ["marinak"],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "more",
+      "name": "Moře",
+      "description": "V moři se vznáší několik těl mrtvých vojáků. Jeden má u sebe papír.",
+      "connections": {
+        "plaz": "plaz"
+      },
+      "items": ["kod"],
+      "characters": [],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "chram",
+      "name": "Chrám",
+      "description": "Prastarý chrám pokrytý mechem. Vidíš výstražné symboly na stěnách.",
+      "connections": {
+        "okraj": "okraj"
+      },
+      "items": ["poklad"],
+      "characters": [],
+      "requiresQuest": false,
+      "requiredQuestId": null,
+      "requiresItem": false,
+      "requiredItemId": null
+    },
+    {
+      "id": "zakladna",
+      "name": "Základna Pána Ostrova",
+      "description": "Moderní budova s heliportem na střeše.",
+      "connections": {
+        "dzungle": "dzungle"
+      },
+      "items": [],
+      "characters": [],
+      "requiresQuest": true,
+      "requiredQuestId": "khar_diamant",
+      "requiresItem": false,
+      "requiredItemId": null
+    }
+  ],
+  "items": [
+    {
+      "id": "kokos",
+      "name": "kokos",
+      "description": "Čerstvý kokos z palmy",
+      "size": 2
+    },
+    {
+      "id": "kod",
+      "name": "kod",
+      "description": "Číselný kód napsaný na papírku: 4782",
+      "size": 1
+    },
+    {
+      "id": "plamenomet",
+      "name": "plamenomet",
+      "description": "Mocná zbraň proti všemu hořlavému",
+      "size": 5
+    },
+    {
+      "id": "poklad",
+      "name": "poklad",
+      "description": "Vzácný poklad z prastarého chrámu",
+      "size": 4
+    },
+    {
+      "id": "diamant",
+      "name": "diamant",
+      "description": "Obří třpytivý diamant",
+      "size": 3
+    }
+  ],
+  "characters": [
+    {
+      "id": "trosecnik",
+      "name": "trosecnik",
+      "description": "Starý muž s šedivými vlasy a vrásčitou tváří",
+      "hostile": false,
+      "dialogue": {
+        "greeting": "Trosečník: Och, další ubožák uvězněný na tomto ostrově! Vítej v pekle, chlapče. Já tu jsem už roky...",
+        "options": [
+          {
+            "text": "Jak se odsud dostanu?",
+            "response": "Trosečník: Musíš najít cestu přes džungli. Ale dej si pozor, v hlubinách džungle žije obrovský had Khar. Mluvil jsem s ním před lety... Je moudrý, ale nebezpečný.",
+            "endsGame": false,
+            "branchTo": "info_more"
+          },
+          {
+            "text": "Kdo za tímhle vším stojí?",
+            "response": "Trosečník: Pán ostrova. Nikdo neví, kdo to je. Je to bohatý a mocný člověk, který si dělá sbírku 'speciálních' lidí. Jeho základna je někde na ostrově.",
+            "endsGame": false,
+            "branchTo": null
+          },
+          {
+            "text": "Jsi v pořádku? Potřebuješ pomoc?",
+            "response": "Trosečník: To je od tebe milé, chlapče. Já už jsem starý a smířený se svým osudem. Ty máš ještě šanci uniknout. Soustřeď se na to!",
+            "endsGame": false,
+            "branchTo": null
+          },
+          {
+            "text": "Nashledanou.",
+            "response": "Trosečník: Hodně štěstí, chlapče. Budeš ho potřebovat.",
+            "endsGame": false,
+            "branchTo": null
+          }
+        ],
+        "branches": {
+          "info_more": {
+            "greeting": "Trosečník: Chceš vědět víc?",
+            "options": [
+              {
+                "text": "Jak se dostanu do džungle?",
+                "response": "Trosečník: Cesta vede přes okraj džungle. Ale pozor! Termiti tam útočí na každého, kdo nemá kokos. Našel jsem jeden tady na pláži - vezmi si ho!",
+                "endsGame": false,
+                "branchTo": null
+              },
+              {
+                "text": "Co víš o Kharovi?",
+                "response": "Trosečník: Khar je prastarý had. Umí mluvit a je velmi inteligentní. Pokud mu dokážeš být užitečný, možná ti pomůže. Ale pozor, je to nebezpečné stvoření.",
+                "endsGame": false,
+                "branchTo": null
+              },
+              {
+                "text": "Díky za informace.",
+                "response": "Trosečník: Není zač. Buď opatrný!",
+                "endsGame": false,
+                "branchTo": null
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "marinak",
+      "name": "marinak",
+      "description": "Statný mladý voják s vážným výrazem",
+      "hostile": false,
+      "dialogue": {
+        "greeting": "Mariňák: Halt! Kdo jsi? ... Další zajatec? Jsme tu na misi zlikvidovat operace pána ostrova.",
+        "options": [
+          {
+            "text": "Můžeš mi pomoct uniknout?",
+            "response": "Mariňák: Nemůžu jen tak něco dát zadarmo. Slyšel jsem o pokladu v chrámu na východě. Přines mi ho a dám ti co potřebuješ.",
+            "endsGame": false,
+            "questToGive": "marinak_poklad",
+            "branchTo": null
+          },
+          {
+            "text": "Co se stalo tvému týmu?",
+            "response": "Mariňák: Byli jsme napadeni. Většina týmu je mrtvá... Jejich těla jsou v moři. Jeden z nich měl u sebe kód k základně, škoda ho.",
+            "endsGame": false,
+            "branchTo": "team_info"
+          },
+          {
+            "text": "Máš nějaké zbraně?",
+            "response": "Mariňák: Mám jen tohle. *Ukazuje plamenomet* Ale nedám ti ho jen tak. Potřebuji něco na oplátku.",
+            "endsGame": false,
+            "branchTo": null
+          },
+          {
+            "text": "Odcházím.",
+            "response": "Mariňák: Vrať se, až budeš mít ten poklad.",
+            "endsGame": false,
+            "branchTo": null
+          }
+        ],
+        "branches": {
+          "team_info": {
+            "greeting": "Mariňák: Chceš vědět víc o mém týmu?",
+            "options": [
+              {
+                "text": "Jak jste sem dostali?",
+                "response": "Mariňák: Připluli jsme tajně. Naše mise byla infiltrovat základnu a zjistit, co se tu děje. Ale pán ostrova nás čekal...",
+                "endsGame": false,
+                "branchTo": null
+              },
+              {
+                "text": "Kde přesně jsou těla?",
+                "response": "Mariňák: V moři poblíž pláže. Jeden z vojáků měl u sebe důležitý kód. Hledej tam.",
+                "endsGame": false,
+                "branchTo": null
+              },
+              {
+                "text": "Díky za informace.",
+                "response": "Mariňák: Jen buď opatrný.",
+                "endsGame": false,
+                "branchTo": null
+              }
+            ]
+          },
+          "after_quest": {
+            "greeting": "Mariňák: Máš ten poklad?",
+            "options": [
+              {
+                "text": "Ano, tady je!",
+                "response": "Mariňák: Výborně! Jak jsem slíbil, tady je plamenomet. Použij ho moudře.",
+                "endsGame": false,
+                "itemToGive": "plamenomet",
+                "branchTo": null
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "khar",
+      "name": "khar",
+      "description": "Obrovský had, největší jakého kdy svět viděl",
+      "hostile": false,
+      "dialogue": {
+        "greeting": "Khar: Ssss... Další lidský tvor v mém království. Co chcesss, malý?",
+        "options": [
+          {
+            "text": "Potřebuji pomoct uniknout z ostrova.",
+            "response": "Khar: Ssss... Zajímavé. Možná ti pomohu, ale nejdřív mi musssíš prokázat svou hodnotu. V jessskyni je diamant, který už dlouho chci získat. Přinessss mi ho!",
+            "endsGame": false,
+            "questToGive": "khar_diamant",
+            "branchTo": null
+          },
+          {
+            "text": "Jsi ohromný! Jak jsi vyrostl do takové velikosti?",
+            "response": "Khar: Ssss... Věk a moudrossst, malý. Žiji tu stovky let. Viděl jsem vzesssstup a pád mnoha lidí na tomto osstrově.",
+            "endsGame": false,
+            "branchTo": "khar_history"
+          },
+          {
+            "text": "Znáš cestu ven?",
+            "response": "Khar: Ssss... Znám. Ale neřeknu ti to jen tak. Musssíš mi nejdřív něco přinéssst.",
+            "endsGame": false,
+            "branchTo": null
+          },
+          {
+            "text": "Zaútočit na hada!",
+            "response": "Khar: Ssss! Ty hlupáku! *Had tě smrtelně uštkne*",
+            "endsGame": true,
+            "isVictory": false,
+            "branchTo": null
+          }
+        ],
+        "branches": {
+          "khar_history": {
+            "greeting": "Khar: Ssss... Chceš znát historii ostrova?",
+            "options": [
+              {
+                "text": "Ano, pověz mi o ostrovu.",
+                "response": "Khar: Toto mísssto bylo kdysi sssvaté. Pak přišel pán ostrova a všsechno zkazil. Teď je to vězeňská kolonie pro jeho sssbírku.",
+                "endsGame": false,
+                "branchTo": null
+              },
+              {
+                "text": "Viděl jsi pána ostrova?",
+                "response": "Khar: Ssss... Ano. Je to temný člověk s ještě temnějšími úmyssly. Drží se daleko ode mě. Ví, že jsem nebezpečný.",
+                "endsGame": false,
+                "branchTo": null
+              },
+              {
+                "text": "Vrátím se později.",
+                "response": "Khar: Ssss... Jak chcešš.",
+                "endsGame": false,
+                "branchTo": null
+              }
+            ]
+          },
+          "after_quest": {
+            "greeting": "Khar: Ssss... Máš můj diamant?",
+            "options": [
+              {
+                "text": "Ano, tady je!",
+                "response": "Khar: Dokonalé! Po desetiletích je konečně můj! Jak jsssem slíbil, pomohu ti. Základna pána ostrova je na severu odsud. Potřebuješ číssselný kód k otevření trezoru. Ten kód mají mrtví vojáci v moři. Najdi ho a můžeš uniknout!",
+                "endsGame": false,
+                "branchTo": null
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "pavouk",
+      "name": "pavouk",
+      "description": "Obrovský nechutný černý pavouk",
+      "hostile": true,
+      "dialogue": null
+    }
+  ],
+  "quests": [
+    {
+      "id": "marinak_poklad",
+      "name": "Poklad pro mariňáka",
+      "description": "Mariňák chce vzácný poklad z chrámu.",
+      "requiredItemId": "poklad",
+      "rewardItemId": "plamenomet",
+      "prerequisiteQuestId": null
+    },
+    {
+      "id": "khar_diamant",
+      "name": "Diamant pro Khara",
+      "description": "Khar touží po jeskynním diamantu.",
+      "requiredItemId": "diamant",
+      "rewardItemId": null,
+      "prerequisiteQuestId": null
+    }
+  ],
+  "startLocation": "plaz",
+  "playerInventorySize": 10
+}

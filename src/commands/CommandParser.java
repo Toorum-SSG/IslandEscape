@@ -1,6 +1,5 @@
 package commands;
-
-import essential.Game;
+import DataLoading.Game;
 
 public class CommandParser {
     private Game game;
@@ -23,6 +22,15 @@ public class CommandParser {
                     command = new MoveCommand(game, target);
                 }else {
                     System.out.println("Kam chceš jít? (použij: jdi <lokace>)");
+                    return;
+                }
+                break;
+
+            case "prohlednout":
+                if (!target.isEmpty()) {
+                    command = new ExamineItemCommand(game, target);
+                } else {
+                    System.out.println("Co chceš prohlédnout? (použij: prohlednout <předmět>)");
                     return;
                 }
                 break;
@@ -77,6 +85,10 @@ public class CommandParser {
             case "konec":
             case "quit":
                 command = new QuitCommand(game);
+                break;
+
+            case "mapa":
+                command = new MapCommand(game);
                 break;
 
             default:

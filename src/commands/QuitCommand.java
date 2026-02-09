@@ -1,5 +1,5 @@
 package commands;
-import essential.Game;
+import DataLoading.Game;
 
 public class QuitCommand implements Command{
     private Game game;

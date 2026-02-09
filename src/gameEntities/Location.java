@@ -1,4 +1,4 @@
-package essential;
+package gameEntities;
 import java.util.*;
 
  public class Location {
@@ -115,6 +115,15 @@ import java.util.*;
             }
         }
     }
+
+     public void setRequiresItem(String itemId) {
+         this.requiresItem = true;
+         this.requiredItemId = itemId;
+     }
+
+     public String getId() {
+        return id;
+     }
  }
 
 

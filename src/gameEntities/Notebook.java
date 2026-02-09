@@ -1,4 +1,4 @@
-package essential;
+package gameEntities;
 import java.util.ArrayList;
 import java.util.List;
 

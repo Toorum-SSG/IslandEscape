@@ -1,4 +1,4 @@
-package essential;
+package gameEntities;
 
 public class Quest {
     private String id;

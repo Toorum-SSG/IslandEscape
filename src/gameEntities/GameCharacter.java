@@ -1,4 +1,6 @@
-package essential;
+package gameEntities;
+import Dialogue.Dialogue;
+
 import java.util.*;
 
 public class GameCharacter {
@@ -27,7 +29,7 @@ public class GameCharacter {
 
     public void interact(Scanner scanner, Player player) {
         if (dialogue != null){
-            dialogue.start(scanner, player);
+            dialogue.start(scanner, player, this);
         }else {
             System.out.println(name + " nepromluví.");
         }
