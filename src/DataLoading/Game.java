@@ -4,6 +4,10 @@ import gameEntities.*;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Hlavní třída hry IslandEscape.
+ * Řídí herní smyčku, načítání dat, pohyb hráče a interakci s herním světem.
+ */
 public class Game {
     private Map<String, Location> locations;
     private Player player;
@@ -12,6 +16,11 @@ public class Game {
     private String dataFilePath;
     private CommandParser commandParser;
 
+    /**
+     * Vytvoří novou instanci hry se zadanou cestou k datovému souboru.
+     *
+     * @param dataFilePath cesta k JSON souboru s herními daty
+     */
     public Game(String dataFilePath) {
         this.dataFilePath = dataFilePath;
         this.scanner = new Scanner(System.in);
@@ -23,6 +32,13 @@ public class Game {
         this.running = running;
     }
 
+    /**
+     * Spustí hlavní herní smyčku.
+     * Inicializuje hru, zobrazí úvod a opakovaně čte příkazy od hráče,
+     * dokud hra neskončí nebo hráč nevyhraje/neprohraje.
+     *
+     * @throws IOException pokud dojde k chybě při načítání herních dat
+     */
     public void start() throws IOException {
         try {
             initializeGame();
@@ -71,6 +87,12 @@ public class Game {
         System.out.println("Napiš 'pomoc' pro zobrazení dostupných příkazů.\n");
     }
 
+    /**
+     * Inicializuje herní data – načte lokace, předměty, postavy a úkoly z JSON souboru
+     * a nastaví hráče na výchozí pozici.
+     *
+     * @throws IOException pokud se nepodaří načíst nebo zparsovat herní data
+     */
     public void initializeGame() throws IOException {
         try {
             GameData gameData = GameDataLoader.loadAllData(dataFilePath);
@@ -85,6 +107,13 @@ public class Game {
         }
     }
 
+    /**
+     * Přesune hráče do zadané lokace, pokud je dostupná a propojená s aktuální lokací.
+     * Kontroluje speciální podmínky pro určité lokace (např. nutnost vlastnit kokos,
+     * plamenomet nebo mít splněný quest pro přístup do základny).
+     *
+     * @param locationName název cílové lokace zadaný hráčem
+     */
     public void moveToLocation(String locationName) {
         String connectedLoc = player.getCurrentLocation().getConnectedLocation(locationName);
 

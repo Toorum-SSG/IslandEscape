@@ -1,15 +1,30 @@
 package commands;
 import DataLoading.Game;
 
+/**
+ * Zpracovává textové příkazy zadané hráčem a převádí je na příslušné {@link Command} objekty.
+ * Používá vzor Command a deleguje provedení na {@link CommandInvoker}.
+ */
 public class CommandParser {
     private Game game;
     private CommandInvoker invoker;
 
+    /**
+     * Vytvoří nový parser příkazů pro danou instanci hry.
+     *
+     * @param game instance hry, se kterou příkazy pracují
+     */
     public CommandParser(Game game){
         this.game = game;
         this.invoker = new CommandInvoker();
     }
 
+    /**
+     * Zparsuje textový vstup hráče, rozpozná příkaz a cíl, vytvoří příslušný
+     * {@link Command} objekt a nechá ho provést přes {@link CommandInvoker}.
+     * Pokud je příkaz neznámý nebo chybí povinný argument, vypíše nápovědu.
+     *@param input řetězec zadaný hráčem na vstupu (např. "jdi plaz", "seber kokos")
+     */
     public void parse(String input){
         String[]parts = input.toLowerCase().split(" ", 2);
         String commandWord = parts[0];

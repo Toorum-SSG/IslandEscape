@@ -1,6 +1,11 @@
 package gameEntities;
 import java.util.*;
 
+/**
+ * Reprezentuje herní lokaci (místo) na ostrově.
+ * Lokace může obsahovat předměty, postavy a propojení na sousední lokace.
+ * Přístup do lokace může být podmíněn splněním questu nebo vlastnictvím předmětu.
+ */
  public class Location {
      private String id;
      private String name;

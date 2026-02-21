@@ -4,7 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Jednoduchý parser JSON bez externích závislostí.
+ * Podporuje parsování JSON objektů ({@code {}}) a polí ({@code []}) do standardních Java kolekcí.
+ */
 public class JSONParser {
+
+    /**
+     * Zparsuje JSON řetězec a vrátí ho jako mapu klíč–hodnota.
+     * Vstupní řetězec musí být JSON objekt (začínat {@code {}).
+     *
+     * @param json JSON řetězec k parsování
+     * @return mapa reprezentující JSON objekt, nebo {@code null} pokud vstup není JSON objekt
+     */
     public static Map<String, Object> parse(String json) {
         json = json.trim();
         if (json.startsWith("{")) {
@@ -13,6 +25,14 @@ public class JSONParser {
         return null;
     }
 
+
+    /**
+     * Zparsuje JSON objekt ({@code {...}}) do mapy Java klíč–hodnota.
+     * Rekurzivně zpracovává vnořené objekty a pole.
+     *
+     * @param json řetězec reprezentující JSON objekt
+     * @return mapa s páry klíč–hodnota
+     */
     private static Map<String, Object> parseObject(String json) {
         Map<String, Object> result = new HashMap<>();
         json = json.substring(1, json.length() - 1).trim();
@@ -74,6 +94,13 @@ public class JSONParser {
         return result;
     }
 
+    /**
+     * Zparsuje JSON pole ({@code [...]}) do Java listu objektů.
+     * Podporuje řetězce, vnořené JSON objekty a primitivní hodnoty.
+     *
+     * @param json řetězec reprezentující JSON pole
+     * @return list hodnot obsažených v poli
+     */
     private static List<Object> parseArray(String json) {
         List<Object> result = new ArrayList<>();
         json = json.substring(1, json.length() - 1).trim();
@@ -110,6 +137,13 @@ public class JSONParser {
         return result;
     }
 
+    /**
+     * Najde index uzavírající hranatou závorky {@code ]} odpovídající otevírací závorce na pozici {@code start}.
+     *
+     * @param json  prohledávaný řetězec
+     * @param start pozice otevírací závorky {@code [}
+     * @return index odpovídající uzavírací závorky {@code ]}
+     */
     private static int findMatchingBracket(String json, int start) {
         int count = 1;
         int pos = start + 1;
@@ -121,6 +155,13 @@ public class JSONParser {
         return pos - 1;
     }
 
+    /**
+     * Najde index uzavírací složené závorky {@code }} odpovídající otevírací závorce na pozici {@code start}.
+     *
+     * @param json  prohledávaný řetězec
+     * @param start pozice otevírací závorky {@code {}
+     * @return index odpovídající uzavírací závorky {@code }}
+     */
     private static int findMatchingBrace(String json, int start) {
         int count = 1;
         int pos = start + 1;

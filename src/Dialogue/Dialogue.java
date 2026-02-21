@@ -4,6 +4,11 @@ import gameEntities.Player;
 
 import java.util.*;
 
+/**
+ * Reprezentuje dialogový systém pro interakci hráče s herní postavou.
+ * Dialog se skládá z uvítacího textu, seznamu možností odpovědí a volitelných větví dialogu.
+ * Větve umožňují rozdílné dialogy v závislosti na stavu hráče (např. po splnění questu).
+ */
  public class Dialogue {
     private String greeting;
     private List<DialogueOption> options;
@@ -21,6 +26,16 @@ import java.util.*;
         options.add(option);
     }
 
+    /**
+      * Spustí interaktivní dialog s hráčem.
+      * Nejprve zkontroluje, zda má být aktivována speciální větev dialogu
+      * (např. po získání klíčového předmětu). Poté zobrazí uvítání a možnosti odpovědi
+      * a zpracuje výběr hráče.
+      *
+      * @param scanner skener pro čtení vstupu od hráče
+      * @param player  hráč, který vede rozhovor
+      * @param speaker herní postava, se kterou hráč mluví
+      */
     public void start(Scanner scanner, Player player, GameCharacter speaker) {
         if (currentBranch == null && branches.containsKey("after_quest")) {
             if (speaker.getName().equals("marinak") && player.getInventory().hasItem("poklad")) {
@@ -60,6 +75,15 @@ import java.util.*;
         }
     }
 
+    /**
+      * Zpracuje hráčovu volbu v dialogu – zobrazí odpověď postavy, přidělí quest nebo předmět,
+      * přepne do jiné větve dialogu nebo ukončí hru.
+      *
+      * @param choice         index zvolené možnosti (0-based)
+      * @param player         hráč vedoucí rozhovor
+      * @param currentOptions seznam aktuálně dostupných možností
+      * @param speaker        postava, se kterou hráč mluví
+      */
     private void processChoice(int choice, Player player, List<DialogueOption> currentOptions, GameCharacter speaker) {
         DialogueOption option = currentOptions.get(choice);
         System.out.println("\n" + option.getResponse());
@@ -113,7 +137,8 @@ import java.util.*;
             player.endGame(option.isVictory());
         }
     }
-     public void addBranch(String id, DialogueBranch branch) {
+
+    public void addBranch(String id, DialogueBranch branch) {
          branches.put(id, branch);
      }
  }

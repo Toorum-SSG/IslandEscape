@@ -1,10 +1,8 @@
 package DataLoading;
-
 import Dialogue.Dialogue;
 import Dialogue.DialogueOption;
 import Dialogue.DialogueBranch;
 import gameEntities.*;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,7 +10,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Načítá veškerá herní data z JSON souboru a sestavuje objekty hry.
+ * Zajišťuje načtení předmětů, questů, postav, dialogů a lokací včetně jejich propojení.
+ */
 public class GameDataLoader {
+
+    /**
+     * Načte veškerá herní data ze zadaného JSON souboru a vrátí je jako {@link GameData}.
+     *
+     * @param jsonFilePath cesta k JSON souboru s herními daty
+     * @return objekt {@link GameData} obsahující načtené lokace, předměty, postavy, questy a nastavení
+     * @throws IOException pokud soubor nelze přečíst nebo JSON nelze zparsovat
+     */
     public static GameData loadAllData(String jsonFilePath) throws IOException {
         String jsonContent = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
         Map<String, Object> data = JSONParser.parse(jsonContent);
@@ -32,6 +42,12 @@ public class GameDataLoader {
         return gameData;
     }
 
+    /**
+     * Načte předměty ze surových dat JSON a vrátí je jako mapu indexovanou ID.
+     *
+     * @param data zparsovaná data JSON
+     * @return mapa předmětů (klíč: ID předmětu, hodnota: instance {@link Item})
+     */
     private static Map<String, Item> loadItems(Map<String, Object> data) {
         Map<String, Item> items = new HashMap<>();
 
@@ -55,6 +71,12 @@ public class GameDataLoader {
         return items;
     }
 
+    /**
+     * Načte questy ze surových dat JSON a vrátí je jako mapu indexovanou ID.
+     *
+     * @param data zparsovaná data JSON
+     * @return mapa questů (klíč: ID questu, hodnota: instance {@link Quest})
+     */
     private static Map<String, Quest> loadQuests(Map<String, Object> data) {
         Map<String, Quest> quests = new HashMap<>();
 
@@ -78,10 +100,15 @@ public class GameDataLoader {
         return quests;
     }
 
-    private static Map<String, GameCharacter> loadCharacters(
-            Map<String, Object> data,
-            Map<String, Quest> quests,
-            Map<String, Item> items) {
+    /**
+     * Načte herní postavy ze surových dat JSON, včetně jejich dialogů.
+     *
+     * @param data   zparsovaná data JSON
+     * @param quests mapa dostupných questů pro přiřazení k dialogovým možnostem
+     * @param items  mapa dostupných předmětů pro přiřazení k dialogovým možnostem
+     * @return mapa postav (klíč: ID postavy, hodnota: instance {@link GameCharacter})
+     */
+    private static Map<String, GameCharacter> loadCharacters(Map<String, Object> data, Map<String, Quest> quests, Map<String, Item> items) {
 
         Map<String, GameCharacter> characters = new HashMap<>();
 
@@ -115,11 +142,15 @@ public class GameDataLoader {
         return characters;
     }
 
-    private static Dialogue loadDialogue(
-            Map<String, Object> dialogueData,
-            Map<String, Quest> quests,
-            Map<String, Item> items) {
-
+    /**
+     * Sestaví objekt {@link Dialogue} ze surových dat JSON, včetně možností a větví.
+     *
+     * @param dialogueData data dialogu z JSON
+     * @param quests       mapa dostupných questů
+     * @param items        mapa dostupných předmětů
+     * @return sestavený objekt {@link Dialogue}
+     */
+    private static Dialogue loadDialogue(Map<String, Object> dialogueData, Map<String, Quest> quests, Map<String, Item> items){
         String greeting = (String) dialogueData.get("greeting");
         Dialogue dialogue = new Dialogue(greeting);
 
@@ -167,6 +198,15 @@ public class GameDataLoader {
         return dialogue;
     }
 
+    /**
+     * Vytvoří objekt {@link DialogueOption} ze surových dat JSON a nastaví jeho volitelné atributy
+     * (quest, předmět, větev dialogu, ukončení hry).
+     *
+     * @param optData data možnosti z JSON
+     * @param quests  mapa dostupných questů
+     * @param items   mapa dostupných předmětů
+     * @return sestavená instance {@link DialogueOption}
+     */
     private static DialogueOption createDialogueOption(Map<String, Object> optData, Map<String, Quest> quests, Map<String, Item> items) {
 
         String text = (String) optData.get("text");
@@ -199,10 +239,16 @@ public class GameDataLoader {
         return option;
     }
 
-    private static Map<String, Location> loadLocations(
-            Map<String, Object> data,
-            Map<String, Item> allItems,
-            Map<String, GameCharacter> allCharacters) {
+    /**
+     * Načte lokace ze surových dat JSON, přiřadí k nim předměty, postavy a podmínky přístupu,
+     * a poté nastaví propojení mezi lokacemi.
+     *
+     * @param data          zparsovaná data JSON
+     * @param allItems      mapa všech dostupných předmětů
+     * @param allCharacters mapa všech dostupných postav
+     * @return mapa lokací (klíč: ID lokace, hodnota: instance {@link Location})
+     */
+    private static Map<String, Location> loadLocations(Map<String, Object> data, Map<String, Item> allItems, Map<String, GameCharacter> allCharacters) {
 
         Map<String, Location> locations = new HashMap<>();
 
