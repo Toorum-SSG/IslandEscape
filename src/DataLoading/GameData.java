@@ -11,15 +11,15 @@ import java.util.Map;
  */
 public class GameData {
     /** Mapa všech herních lokací indexovaná jejich ID. */
-    Map<String, Location> locations;
+    public Map<String, Location> locations;
     /** Mapa všech herních předmětů indexovaná jejich ID. */
-    Map<String, Item> items;
+    public Map<String, Item> items;
     /** Mapa všech herních postav indexovaná jejich ID. */
-    Map<String, GameCharacter> characters;
+    public Map<String, GameCharacter> characters;
     /** Mapa všech herních questů indexovaná jejich ID. */
-    Map<String, Quest> quests;
+    public Map<String, Quest> quests;
     /** ID výchozí lokace, ve které hráč začíná hru. */
-    String startLocation;
+    public String startLocation;
     /** Maximální kapacita inventáře hráče (počet políček). */
-    int inventorySize;
+    public int inventorySize;
 }
