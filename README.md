@@ -1,4 +1,4 @@
-# 🏝️ Útěk z ostrova (IslandEscape)
+#  🏝️ Útěk z ostrova (IslandEscape)
 
 Textová adventura napsaná v jazyce Java. Hráč se ocitne na tajemném ostrově a musí najít cestu k úniku – prozkoumat lokace, mluvit s postavami, plnit úkoly a nakonec se dostat do základny a vzlétnout helikoptérou.
 
@@ -52,9 +52,14 @@ IslandEscape/
 │   │   ├── Quest.java            # Herní úkol
 │   │   └── Notebook.java         # Poznámkový blok hráče
 │   └── test/
-│       └── GameTest.java         # Unit testy (bez externích závislostí)
+│       ├── IslandEscapeTest.java # Unit testy (JUnit Jupiter)
+│       └── resources/
+│           └── gamedata.json     # Herní data pro testy
+├── out/
+│   └── artifacts/
+│       └── islandEscape_jar/
+│           └── islandEscape.jar  # Spustitelný JAR soubor
 ├── gamedata.json                 # Herní data (lokace, předměty, postavy, questy)
-├── IslandEscape.jar              # Spustitelný JAR soubor
 └── README.md
 ```
 
@@ -111,13 +116,25 @@ Veškerá herní data jsou oddělena od kódu a uložena v souboru `gamedata.jso
 - Java 11 nebo novější (JRE)
 
 ### Spuštění z JAR souboru
+
+JAR soubor se nachází ve složce `out/artifacts/islandEscape_jar/`. Před spuštěním se ujisti, že `gamedata.json` leží ve **stejné složce** jako JAR.
+
 ```bash
-java -jar IslandEscape.jar
+cd out\artifacts\islandEscape_jar
+java -jar islandEscape.jar
 ```
 
-Pokud je soubor `gamedata.json` na jiném místě, předej cestu jako argument:
+Nebo s cestou k `gamedata.json` jako argumentem:
 ```bash
-java -jar IslandEscape.jar /cesta/k/gamedata.json
+java -jar out\artifacts\islandEscape_jar\islandEscape.jar gamedata.json
+```
+
+#### Spuštění odkudkoliv přes CMD
+1. Otevři složku s `.jar` v průzkumníku
+2. Klikni do adresního řádku, napiš `cmd` a stiskni Enter
+3. Spusť:
+```bash
+java -jar islandEscape.jar
 ```
 
 ### Kompilace ze zdrojových kódů
@@ -137,26 +154,31 @@ java -cp out DataLoading.Main
 
 ## 🧪 Unit testy
 
-Projekt obsahuje vlastní testovací třídu `GameTest` bez závislosti na externích frameworcích (JUnit apod.).
+Projekt obsahuje testovací třídu `IslandEscapeTest` využívající framework **JUnit Jupiter (JUnit 5)**.
 
-### Spuštění testů
-```bash
-java -cp IslandEscape.jar test.GameTest
+### Závislost
+
+V IntelliJ IDEA přidej přes `File → Project Structure → Modules → Dependencies → + → Library → From Maven`:
 ```
+org.junit.jupiter:junit-jupiter:5.10.0
+```
+
+### Spuštění testů v IntelliJ
+Pravým kliknutím na `IslandEscapeTest.java` → **Run 'IslandEscapeTest'**
 
 ### Přehled testů
 
 | # | Test | Testované metody |
 |---|------|-----------------|
-| 1 | `testInventory` | `Inventory.addItem()`, `removeItem()`, `hasItem()`, `hasSpace()` |
-| 2 | `testPlayerQuests` | `Player.addQuest()`, `completeQuest()`, `hasQuest()`, `hasCompletedQuest()` |
-| 3 | `testLocation` | `Location.addItem()`, `getItem()`, `removeItem()`, `addCharacter()`, `getCharacter()` |
-| 4 | `testLocationAccessibility` | `Location.isAccessible()`, `setRequiresQuest()` |
-| 5 | `testJSONParser` | `JSONParser.parse()` |
-| 6 | `testDialogueOption` | `DialogueOption.getText()`, `getResponse()`, `setEndsGame()`, `isVictory()` |
-| 7 | `testPlayerGameEnd` | `Player.endGame()`, `hasGameEnded()`, `hasWon()` |
+| 1 | `testInventory_addAndHasItem` | `Inventory.addItem()`, `hasItem()` |
+| 2 | `testInventory_removeItem` | `Inventory.removeItem()`, `hasItem()` |
+| 3 | `testPlayer_questLifecycle` | `Player.addQuest()`, `completeQuest()`, `hasQuest()`, `hasCompletedQuest()` |
+| 4 | `testLocation_itemsAndAccessibility` | `Location.addItem()`, `getItem()`, `isAccessible()` |
+| 5 | `testJSONParser_parse` | `JSONParser.parse()` |
+| 6 | `testGameDataLoader_loadAllData` | `GameDataLoader.loadAllData()` |
+| 7 | `testGame_initAndMove` | `Game.initializeGame()`, `Game.moveToLocation()` |
 
-Celkem: **33 asercí**, všechny prochází ✅
+Celkem: **7 testů**, všechny prochází ✅
 
 ---
 
@@ -172,7 +194,7 @@ Veškerý obsah hry je definován v souboru `gamedata.json`. Lze zde upravovat:
 
 ---
 
-## 👤 Autor: Samuel Svoboda
+## 👤 Autor
 
 Projekt vytvořen jako školní práce.  
 Jazyk: **Java**  
