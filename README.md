@@ -196,6 +196,7 @@ Veškerý obsah hry je definován v souboru `gamedata.json`. Lze zde upravovat:
 
 ## 👤 Autor
 
-Projekt vytvořen jako školní práce.  
+Projekt vytvořen jako školní práce.
+Autor: Samuel Svoboda
 Jazyk: **Java**  
 Typ: **Textová adventura / konzolová hra**
